@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    overflow-y: hidden;
+    background: url("../../public/images/Fondo.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.titulo {
+    font-size: 70px;
+    margin-top: 3%;
+    margin-left: 3%;
+    color: #a0fa8e;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 
+        2px 2px 0 #0000003c;
+}
+
+#mainBox {
+    background-color: linear-gradient(135deg, rgba(155, 255, 248, 0.23), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: calc(50% - 10%);
+    height: auto;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 2%;
+}
+
+p {
+    font-size: 20px;
+    color: #ffffff;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 10%;
+    text-shadow: 
+        1px 1px 0 #0000003c,
+        -1px -1px 0 #0000003c;
+}
+
+#previewImage {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #a0fa8e;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#iconoGal {
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    transform: scale(1);
+    margin-left: 5%;
+}
+
+#iconoGal:hover {
+    transition: color 0.3s, transform 0.3s;
+    color: #a0fa8e;
+    transform: scale(1.2);
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
