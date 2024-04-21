@@ -1,28 +1,40 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
 
 body {
     overflow-y: hidden;
-    background: url("../../public/images/Fondo.jpg");
+    background: #DBC4F2;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
 }
 
+.header {
+    background-color: white; /* Color de fondo */
+    text-align: center; /* Centrado de texto */
+    padding-bottom: 20px; /* Espaciado interno */
+    width: 80%;
+    margin-left: auto; /* Centrado horizontal */
+    margin-right: auto; /* Centrado horizontal */
+    margin-bottom: 40px; /* Margen inferior */
+ 
+    
+}
+
 .titulo {
     font-size: 70px;
     margin-top: 3%;
     margin-left: 3%;
-    color: #a0fa8e;
+    color: #7B78BF;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-shadow: 
         2px 2px 0 #0000003c;
 }
 
 #mainBox {
-    background-color: linear-gradient(135deg, rgba(155, 255, 248, 0.23), rgba(255, 255, 255, 0));
+    background-color: #7B78BF;
     backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
