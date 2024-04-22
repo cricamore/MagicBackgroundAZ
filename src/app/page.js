@@ -20,17 +20,17 @@ export default function Home() {
 
       const formData = new FormData();
       formData.append("image", file);
-      console.log(formData);
-      console.log(process.env.NEXT_PUBLIC_AZURE_ENDPOINT);
-      console.log(process.env.NEXT_PUBLIC_AZURE_KEY);
-      const res = await sendImage(formData, process.env.NEXT_PUBLIC_AZURE_ENDPOINT, process.env.NEXT_PUBLIC_AZURE_KEY);
-      const imageBlob = await res.blob();
-      const imageObjectURL = URL.createObjectURL(imageBlob);
-
-      setPreviewSrc(imageObjectURL);
-    
     }
   };
+
+  const handleRemoveBackground = async (formData) => {
+
+    const res = await sendImage(formData, process.env.NEXT_PUBLIC_AZURE_ENDPOINT, process.env.NEXT_PUBLIC_AZURE_KEY);
+    const imageBlob = await res.blob();
+    const imageObjectURL = await URL.createObjectURL(imageBlob);
+
+    setPreviewSrc(imageObjectURL);
+  }
 
 
   return (
@@ -47,21 +47,17 @@ export default function Home() {
               <h1 className="titulo">Remove Background</h1>
             </div>
             <div className=" grid grid-cols-2 gap-2 " >
-              <div id="mainBox">
-               
-                  {previewSrc ? (
-                    <img src={previewSrc} alt="Preview" className="image" />
-                  ) : (
-
-
-
+              <div id="mainBox" className="h-[60vh]">
+                {previewSrc ? (
+                  <img src={previewSrc} alt="Preview" className="image" />
+                ) : (
                   <svg
                     id="iconoGal"
                     onClick={handleIconClick}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    class="w-20 h-20"
+                    className="w-20 h-20"
                     color="white"
                   >
                     <path
@@ -70,10 +66,9 @@ export default function Home() {
                       clip-rule="evenodd"
                     />
                   </svg>
-                  )}
-                
-              </div>
+                )}
 
+              </div>
 
               <div className=" grid grid-rows-4 " >
                 <input
@@ -86,7 +81,7 @@ export default function Home() {
                   Upload Image
                 </button>
 
-                <button className="btn" onClick={handleIconClick}>
+                <button className="btn" onClick={() => handleRemoveBackground(fileInput.current.files[0])}>
                   Remove Background
                 </button>
 
