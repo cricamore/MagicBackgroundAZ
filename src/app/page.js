@@ -3,14 +3,105 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import "./style.css";
 import { sendImage } from "./util/fetchAzure";
+import Jimp from 'jimp';
+import { SketchPicker } from 'react-color';
+import { fabric } from 'fabric';
+
+
 
 export default function Home() {
   const fileInput = useRef(null);
   const [previewSrc, setPreviewSrc] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [color, setColor] = useState('#fff');
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+
+  const popover = {
+    position: 'absolute',
+    zIndex: '2',
+  }
+  const cover = {
+    position: 'fixed',
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+  }
+
+  const handleClick = () => {
+    setDisplayColorPicker(!displayColorPicker);
+  };
+
+  const handleClose = () => {
+    setDisplayColorPicker(false);
+  };
+
+  const handleChange = (color) => {
+    setColor(color.hex);
+    document.getElementById('mainBox').style.background = color.hex;
+  };
+
+  const createImageWithBackground = (imageUrl, color) => {
+    const canvas = new fabric.Canvas();
+  
+    fabric.Image.fromURL(imageUrl, (img) => {
+      
+      canvas.setWidth(img.width);
+      canvas.setHeight(img.height);
+  
+      const rect = new fabric.Rect({
+        left: 0,
+        top: 0,
+        width: img.width,
+        height: img.height,
+        fill: color,
+      });
+  
+      canvas.add(rect);
+  
+      img.set({ left: 0, top: 0 });
+      canvas.add(img);
+  
+      const dataUrl = canvas.toDataURL({ format: 'png' });
+      const link = document.createElement('a');
+      link.download = 'image_with_background.png';
+      link.href = dataUrl;
+      link.click();
+    });
+  };
 
   const handleIconClick = () => {
     fileInput.current.click();
   };
+
+
+  
+  
+  const handleCombineImages = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setBackgroundImage(objectUrl);
+
+      const formData = new FormData();
+      formData.append("image", file);
+    }
+    // Lee las imágenes
+    const bgImage = await Jimp.read(backgroundImage);
+    console.log(bgImage)
+    const fgImage = await Jimp.read(previewSrc);
+  
+    // Combina las imágenes
+    bgImage.composite(fgImage, 0, 0);
+  
+    // Convierte la imagen combinada a blob
+    const combinedImageBlob = await bgImage.getBufferAsync(Jimp.MIME_PNG);
+
+    const combinedImageObjectURL = URL.createObjectURL(combinedImageBlob);
+  
+    setPreviewSrc(combinedImageObjectURL);
+  }
+  
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -30,13 +121,14 @@ export default function Home() {
     const imageObjectURL = await URL.createObjectURL(imageBlob);
 
     setPreviewSrc(imageObjectURL);
+    console.log(previewSrc)
   }
 
 
   return (
     <>
       <head>
-        <title>NutriVision</title>
+        <title>MagicBackgroundAZ</title>
         <meta name="description" content="My first Next.js app" />
         <link rel="icon" href="/favicon.ico" />
       </head>
@@ -44,7 +136,7 @@ export default function Home() {
         <main>
           <div>
             <div className="header">
-              <h1 className="titulo">Remove Background</h1>
+              <h1 className="titulo">MagicBackgroundAZ</h1>
             </div>
             <div className=" grid grid-cols-2 gap-2 " >
               <div id="mainBox" className="h-[60vh]">
@@ -68,6 +160,7 @@ export default function Home() {
                   </svg>
                 )}
 
+               
               </div>
 
               <div className=" grid grid-rows-4 " >
@@ -84,14 +177,23 @@ export default function Home() {
                 <button className="btn" onClick={() => handleRemoveBackground(fileInput.current.files[0])}>
                   Remove Background
                 </button>
+                  
+                
+                <input type="file" className="btn" onChange={handleCombineImages} />
 
-                <button className="btn" onClick={handleIconClick}>
-                  Upload Background
-                </button>
+                  <button className="btn" onClick={handleClick}>
+                    Select Background Color
+                  </button>
+                  {displayColorPicker ? <div style={ popover }>
+                    <div style={ cover } onClick={ handleClose }/>
+                    <SketchPicker color={color} onChange={handleChange} />
+                  </div> : null }
+                
+                
 
-                <button className="btn" onClick={handleIconClick}>
-                  Select Background Color
-                </button>
+                  <button className="btn" onClick={() => createImageWithBackground(previewSrc, color)}>
+                    Download Image with Background
+                  </button>
               </div>
             </div>
           </div>
