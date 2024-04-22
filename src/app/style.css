@@ -4,15 +4,16 @@
 
 body {
     overflow-y: hidden;
-    background: #DBC4F2;
+    background: #210140;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
 }
 
+
 .header {
-    background-color: white; /* Color de fondo */
+    background: linear-gradient(to right, #383673, #8B73BF);
     text-align: center; /* Centrado de texto */
     padding-bottom: 20px; /* Espaciado interno */
     width: 80%;
@@ -27,43 +28,44 @@ body {
     font-size: 70px;
     margin-top: 3%;
     margin-left: 3%;
-    color: #7B78BF;
+    color: white;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-shadow: 
         2px 2px 0 #0000003c;
 }
 
+.btn{
+    background-color: #8B73BF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 20px;
+    font-family:'Arial Narrow';
+    text-shadow: 
+        1px 1px 0 #0000003c;
+
+}
+
+
 #mainBox {
-    background-color: #7B78BF;
+   
+    display: flex;
+    background-color: #8B73BF;
     backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: calc(50% - 10%);
+    width: 80%;
+    padding: 4px;
+    overflow: hidden;
     height: auto;
-    position: relative;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    padding: 2%;
-}
-
-p {
-    font-size: 20px;
-    color: #ffffff;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-bottom: 10%;
-    text-shadow: 
-        1px 1px 0 #0000003c,
-        -1px -1px 0 #0000003c;
-}
-
-#previewImage {
-    width: 80px;
-    height: 80px;
-    border: 2px solid #a0fa8e;
-    margin-left: 5%;
-    margin-right: 5%;
+    justify-content: center;
+    align-items: center;
+ 
 }
 
 #iconoGal {
@@ -75,19 +77,27 @@ p {
 
 #iconoGal:hover {
     transition: color 0.3s, transform 0.3s;
-    color: #a0fa8e;
+    color: #3F0A73;
     transform: scale(1.2);
 }
 
-.grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+
 
 .image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    .titulo {
+        font-size: 5vw;
+    }
+}
+
+/* Si la ventana del navegador es de 400px o menos, ajusta el tamaño de la fuente */
+@media (max-width: 400px) {
+    .titulo {
+        font-size: 6vw;
+    }
 }
