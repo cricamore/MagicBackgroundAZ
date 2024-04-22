@@ -179,7 +179,7 @@ export default function Home() {
                 </button>
                   
                 
-                <input type="file" className="btn" onChange={handleCombineImages} />
+                
 
                   <button className="btn" onClick={handleClick}>
                     Select Background Color
