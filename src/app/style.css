@@ -3,11 +3,12 @@
 @tailwind utilities; 
 
 body {
-    background: #210140;
+    background: url("../../public/images/purple.jpg");
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
+    overflow: hidden;
 }
 
 
@@ -20,8 +21,6 @@ body {
     margin-right: auto; /* Centrado horizontal */
     margin-bottom: 40px; /* Margen inferior */
     border-radius: 20px;
- 
-    
 }
 
 .titulo {
@@ -35,8 +34,9 @@ body {
 }
 
 .btn{
-    background-color: #8B73BF;
-    transition: transform 0.3s ease-in-out;
+    background-color: #8b73bf74;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -46,20 +46,20 @@ body {
     font-weight: bold;
     text-shadow: 
         1px 1px 0 #0000003c;
-
-
 }
 
 .btn:hover {
-    transform: scale(1.1); /* Aumenta el tamaño del botón en un 10% */
-    background-color: #9D85F2;
+    transition: background-color 0.3s, transform 0.3s;
+    transform: scale(1.035); /* Aumenta el tamaño del botón en un 10% */
+    background-color: #8b73bf;
+    backdrop-filter: blur(8px);
 }
 
 
 #mainBox {
    
     display: flex;
-    background-color: #8B73BF;
+    background-color: #8b73bf74;
     backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -85,7 +85,7 @@ body {
 
 #iconoGal:hover {
     transition: color 0.3s, transform 0.3s;
-    color: #3F0A73;
+    color: #3f0a7375;
     transform: scale(1.2);
 }
 
