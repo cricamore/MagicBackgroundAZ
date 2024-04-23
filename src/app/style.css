@@ -19,6 +19,7 @@ body {
     margin-left: auto; /* Centrado horizontal */
     margin-right: auto; /* Centrado horizontal */
     margin-bottom: 40px; /* Margen inferior */
+    border-radius: 20px;
  
     
 }
@@ -35,15 +36,23 @@ body {
 
 .btn{
     background-color: #8B73BF;
+    transition: transform 0.3s ease-in-out;
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
     text-decoration: none;
     margin: 20px;
     font-family:'Arial Narrow';
+    font-weight: bold;
     text-shadow: 
         1px 1px 0 #0000003c;
 
+
+}
+
+.btn:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del botón en un 10% */
+    background-color: #9D85F2;
 }
 
 
