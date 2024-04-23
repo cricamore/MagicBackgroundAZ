@@ -3,7 +3,6 @@
 @tailwind utilities; 
 
 body {
-    overflow-y: hidden;
     background: #210140;
     height: 100vh;
     background-size: cover;
@@ -59,7 +58,7 @@ body {
     width: 80%;
     padding: 4px;
     overflow: hidden;
-    height: auto;
+    height: 55vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
